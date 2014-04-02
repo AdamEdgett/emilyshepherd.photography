@@ -21,7 +21,7 @@ grunt.initConfig({
             }
         }
     },
-    browser_sync: {
+    browserSync: {
         dev: {
             bsFiles: {
                 src: [
@@ -29,21 +29,36 @@ grunt.initConfig({
                     '**/*.html',
                 ],
                 options: {
-                    watchTask: false
+                    watchTask: true
                 }
             }
+        }
+    },
+    imagemin: {
+        dynamic: {
+            files: [{
+                expand: true,
+                cwd: 'src/',
+                src: ['**/*.{png,jpg,gif}'],
+                dest: 'images/'
+            }]
+        }
+    },
+    concurrent: {
+        dev: ['imagemin', 'browserSync', 'watch'],
+        options: {
+            logConcurrentOutput: true
         }
     }
 });
 
 // Load the Grunt plugins.
 grunt.loadNpmTasks('grunt-contrib-compass');
-grunt.loadNpmTasks('grunt-contrib-jshint');
-grunt.loadNpmTasks('grunt-contrib-jst');
 grunt.loadNpmTasks('grunt-contrib-watch');
 grunt.loadNpmTasks('grunt-browser-sync');
+grunt.loadNpmTasks('grunt-concurrent');
 // Register the default tasks.
-grunt.registerTask('default', ['watch']);
-grunt.registerTask('bs', ['browser_sync']);
+grunt.registerTask('default', ['concurrent:dev']);
+grunt.registerTask('bs', ['browserSync']);
 
 };

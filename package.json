@@ -1,12 +1,11 @@
 {
   "name": "emilyshepherd.photography",
   "author": "Adam Edgett",
-  "devDependencies" : {
-    "grunt" : "latest",
-    "grunt-contrib-jshint" : "latest",
-    "grunt-contrib-watch" : "latest",
-    "grunt-contrib-compass" : "latest",
-    "grunt-browser-sync" : "latest",
-    "grunt-contrib-jst" : "latest"
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-compass": "latest",
+    "grunt-browser-sync": "latest",
+    "grunt-concurrent": "latest"
   }
 }
