@@ -5,6 +5,8 @@
     "grunt": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-contrib-compass": "latest",
+    "grunt-contrib-imagemin": "lastest",
+    "imagemin": "latest",
     "grunt-browser-sync": "latest",
     "grunt-concurrent": "latest"
   }

@@ -55,6 +55,7 @@ grunt.initConfig({
 // Load the Grunt plugins.
 grunt.loadNpmTasks('grunt-contrib-compass');
 grunt.loadNpmTasks('grunt-contrib-watch');
+grunt.loadNpmTasks('grunt-contrib-imagemin');
 grunt.loadNpmTasks('grunt-browser-sync');
 grunt.loadNpmTasks('grunt-concurrent');
 // Register the default tasks.
