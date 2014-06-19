@@ -2,12 +2,9 @@
   "name": "emilyshepherd.photography",
   "author": "Adam Edgett",
   "devDependencies": {
-    "grunt": "latest",
-    "grunt-contrib-watch": "latest",
-    "grunt-contrib-compass": "latest",
-    "grunt-contrib-imagemin": "lastest",
-    "imagemin": "latest",
-    "grunt-browser-sync": "latest",
-    "grunt-concurrent": "latest"
+    "gulp": "^3.8.1",
+    "gulp-compass": "^1.1.9",
+    "gulp-imagemin": "^0.6.1",
+    "browser-sync": "^0.9.1"
   }
 }
