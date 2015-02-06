@@ -1,2 +1,4 @@
 - photos.each do |photo|
-  %img{src: "/#{photo}"}
+  %div{class: 'photo-box'}
+    %a{href: "/#{photo}", 'data-lightbox' => 'album', 'data-title' => 'Photo' }
+      %img{src: "/#{photo}"}

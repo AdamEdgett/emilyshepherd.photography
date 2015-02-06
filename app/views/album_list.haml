@@ -1,5 +1,7 @@
 %div
-  %ul
-    - albums.each do |album|
-      %li
-        %a{href: album} album
+  - albums.each do |album|
+    %div{class: 'photo-box'}
+      %a{href: album}
+        %img{src: "#{album}/01.jpg"}
+      %aside{class: 'photo-caption'}
+        album
