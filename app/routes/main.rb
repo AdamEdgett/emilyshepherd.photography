@@ -7,10 +7,6 @@ class App < Sinatra::Base
   ALBUM_DIR = 'public/albums'
 
   get '/' do
-    haml :home
-  end
-
-  get '/albums' do
     albums = get_directories(ALBUM_DIR)
     haml :album_list, locals: { albums: albums }
   end
