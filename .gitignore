@@ -1,6 +1,6 @@
-*.css
-
 node_modules/
 .sass-cache/
 
+public/vendor
+public/css
 public/albums
