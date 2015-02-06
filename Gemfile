@@ -4,6 +4,7 @@ gem 'sinatra'
 
 gem 'rake'
 gem 'haml'
+gem 'compass'
 
 group :development do
   gem 'shotgun'

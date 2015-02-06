@@ -2,20 +2,25 @@ var gulp = require('gulp');
 
 var compass = require('gulp-compass');
 var browserSync = require('browser-sync');
-var imagemin = require('gulp-imagemin');
+
+function swallowError(error) {
+  console.log(error.toString());
+  this.emit('end');
+}
 
 var paths = {
-  sass: 'sass/*.scss',
+  sass: 'sass/**/*.scss',
   html: '*.html',
   images: 'src/**/*'
 };
 
 gulp.task('compass', function() {
-  gulp.src(paths.sass)
+  return gulp.src(paths.sass)
   .pipe(compass({
-    css: 'stylesheets',
-    sass: 'sass'
+    css: 'public/css',
+    sass: 'sass',
   }))
+  .on('error', swallowError)
   .pipe(browserSync.reload({stream:true}));
 });
 
@@ -32,17 +37,9 @@ gulp.task('bs-reload', function() {
   .pipe(browserSync.reload({stream:true}));
 });
 
-gulp.task('imagemin', function() {
-  gulp.src(path.images)
-  .pipe(imagemin({optimizationLevel: 5}))
-  .pipe(gulp.dest('images'));
-});
-
-// Rerun the task when a file changes
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['compass']);
   gulp.watch(paths.html, ['bs-reload']);
-  gulp.watch(paths.images, ['imagemin']);
 });
 
-gulp.task('default', ['watch', 'compass', 'browser-sync', 'imagemin']);
+gulp.task('default', ['watch', 'compass', 'browser-sync']);
