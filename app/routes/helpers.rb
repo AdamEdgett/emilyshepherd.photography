@@ -6,7 +6,7 @@ module Sinatra
 
     # Helper functions
     module Helpers
-      IMAGE_FILE_EXTS = %w(jpg jpeg png gif)
+      IMAGE_FILE_EXTS = %w(.jpg .jpeg .png .gif)
 
       def strip_public(path)
         path.sub(%r{^/?public/}, '')
@@ -18,7 +18,7 @@ module Sinatra
       end
 
       def get_images(path)
-        get_files(path).reject do |file|
+        get_files(path).select do |file|
           IMAGE_FILE_EXTS.include?(File.extname(file))
         end
       end
