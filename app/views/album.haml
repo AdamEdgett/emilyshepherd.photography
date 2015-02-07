@@ -1,5 +1,5 @@
 %div{class: 'album-info'}
   %h3
-    = 'Album Title'
-%div{id: 'js-masonry'}
+    = title
+%div{id: 'photo-group'}
   = haml :'photo_list', locals: { photos: photos }
