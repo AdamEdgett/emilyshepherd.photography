@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'find'
+require 'yaml'
 
 module Sinatra
   module Routes
@@ -24,10 +25,13 @@ module Sinatra
       end
 
       def get_directories(path)
-        dirs = Find.find(path).reject do |file|
+        Find.find(path).reject do |file|
           !File.directory?(file) || file.eql?(path)
         end
-        dirs.map { |file| strip_public(file) }
+      end
+
+      def get_meta(path)
+        YAML.load_file "#{path}/meta.yaml"
       end
 
       alias_method :get_folders, :get_directories

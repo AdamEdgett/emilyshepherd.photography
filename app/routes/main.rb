@@ -8,7 +8,15 @@ class App < Sinatra::Base
   ALBUM_DIR = 'public/albums'
 
   get '/' do
-    albums = get_directories(ALBUM_DIR)
+    album_paths = get_directories(ALBUM_DIR)
+    albums = album_paths.map { |album_path|
+      meta = get_meta(album_path)
+      {
+        href: strip_public(album_path),
+        title: meta['title'],
+        cover: meta['cover']
+      }
+    }
     haml :album_list, locals: { albums: albums }
   end
 
@@ -18,8 +26,11 @@ class App < Sinatra::Base
   end
 
   get '/albums/:album' do
-    photos = get_images(ALBUM_DIR + "/#{params[:album]}")
-    haml :album, locals: { photos: photos }
+    album_path = ALBUM_DIR + "/#{params[:album]}"
+    photos = get_images(album_path)
+    meta = get_meta(album_path)
+    title = meta['title']
+    haml :album, locals: { photos: photos, title: title }
   end
 
   get '/albums/:album/json' do
