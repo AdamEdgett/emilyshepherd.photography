@@ -1,6 +1,8 @@
 node_modules/
 .sass-cache/
 
-public/vendor
+public/index.html
+public/js
 public/css
+public/vendor
 public/albums

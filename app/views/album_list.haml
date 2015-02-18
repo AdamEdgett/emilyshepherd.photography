@@ -1,7 +1,0 @@
-%div
-  - albums.each do |album|
-    %div{class: 'photo-box'}
-      %a{href: album[:href]}
-        %img{src: "#{album[:href]}/#{album[:cover]}"}
-      %aside{class: 'photo-caption'}
-        = album[:title]
