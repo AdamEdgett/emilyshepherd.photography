@@ -2,6 +2,7 @@ node_modules/
 .sass-cache/
 
 public/js
+public/json
 public/css
 public/vendor
 public/albums

@@ -1,31 +1,37 @@
-var React = require('react');
+const React = require('react');
+const Router = require('react-router');
+const { Link } = Router;
 
-var _ = require('lodash');
+const _ = require('lodash');
+const getJSON = require('helpers/get_json');
 
-var Albums = React.createClass({
+const Albums = React.createClass({
+  statics: {
+    fetchData: function(params) {
+      return getJSON('json/albums.json');
+    }
+  },
+
   props: {
-    albums: React.PropTypes.arrayOf(
-      React.PropTypes.shape({
-        title: React.PropTypes.string.isRequired,
-        url: React.PropTypes.string.isRequired,
-        cover: React.PropTypes.string.isRequired,
-        photos: React.PropTypes.arrayOf(
-          React.PropTypes.shape({
-            url: React.PropTypes.string.isRequired,
-            title: React.PropTypes.string
-          })
-        )
-      })
-    )
+    data: React.PropTypes.shape({
+      albums: React.PropTypes.arrayOf(
+        React.PropTypes.shape({
+          title: React.PropTypes.string.isRequired,
+          path: React.PropTypes.string.isRequired,
+          cover: React.PropTypes.string.isRequired,
+        })
+      )
+    })
   },
 
   render: function() {
-    var renderedAlbums = _.map(this.props.albums, function(album) {
+    const { albums } = this.props.data;
+    const renderedAlbums = _.map(albums, function(album) {
       return (
-        <div className='photo-box'>
-          <a href={album.url}>
-            <img src={album.url + '/' + album.cover} />
-          </a>
+        <div className='photo-box' key={album.title}>
+          <Link to='album' params={{albumName: album.path}}>
+            <img src={'albums/' + album.path + '/' + album.cover} />
+          </Link>
           <aside className='photo-caption'>
             {album.title}
           </aside>
@@ -41,4 +47,4 @@ var Albums = React.createClass({
   }
 });
 
-module.exports = Albums;
+export default Albums;

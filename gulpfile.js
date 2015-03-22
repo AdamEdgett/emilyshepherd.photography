@@ -4,6 +4,7 @@ var compass = require('gulp-compass');
 var browserSync = require('browser-sync');
 var source = require('vinyl-source-stream');
 var browserify = require('browserify');
+var babelify = require('babelify');
 
 function swallowError(error) {
   console.log(error.toString());
@@ -18,9 +19,9 @@ var paths = {
 gulp.task('js', function() {
   return browserify({
     entries: './src/js/app.js',
-    paths: [ './node_modules', './src/js' ]
+    paths: [ './node_modules', './public/vendor', './src/js' ]
   })
-    .transform('reactify')
+    .transform(babelify)
     .on('error', swallowError)
     .bundle()
     .on('error', swallowError)
