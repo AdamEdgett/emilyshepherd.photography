@@ -1,11 +1,11 @@
-const React = require('react');
+import React from 'react';
 
-const _ = require('lodash');
-const Masonry = require('masonry-layout');
-const Spinner = require('spin.js');
-const imagesLoaded = require('imagesloaded');
+import _ from 'lodash';
+import Masonry from 'masonry-layout';
+import Spinner from 'spin.js';
+import imagesLoaded from 'imagesloaded';
 
-const getJSON = require('helpers/get_json');
+import getJSON from 'helpers/get_json';
 
 const Album = React.createClass({
   statics: {

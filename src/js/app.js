@@ -1,10 +1,9 @@
-const React = require('react');
-const Router = require('react-router');
-const { Route, DefaultRoute } = Router;
+import React from 'react';
+import Router, { Route, DefaultRoute } from 'react-router';
 
-const Page = require('components/page.jsx');
-const Albums = require('components/albums.jsx');
-const Album = require('components/album.jsx');
+import Page from 'components/page.jsx';
+import Albums from 'components/albums.jsx';
+import Album from 'components/album.jsx'
 
 const routes = (
   <Route handler={Page} path='/'>

@@ -1,9 +1,8 @@
-const React = require('react');
-const Router = require('react-router');
-const { Link } = Router;
+import React from 'react';
+import Router, { Link } from 'react-router';
 
-const _ = require('lodash');
-const getJSON = require('helpers/get_json');
+import _ from 'lodash';
+import getJSON from 'helpers/get_json';
 
 const Albums = React.createClass({
   statics: {

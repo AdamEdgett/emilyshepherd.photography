@@ -1,6 +1,5 @@
-const React = require('react');
-const Router = require('react-router');
-const { RouteHandler } = Router;
+import React from 'react';
+import Router, { RouteHandler } from 'react-router';
 
 const Page = React.createClass({
   render: function() {
