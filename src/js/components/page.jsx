@@ -1,8 +1,8 @@
-import React from 'react';
-import Router, { RouteHandler } from 'react-router';
+import React, { Component } from 'react';
+import { RouteHandler } from 'react-router';
 
-const Page = React.createClass({
-  render: function() {
+class Page extends Component {
+  render() {
     return (
       <div className='content'>
         <header>
@@ -12,6 +12,6 @@ const Page = React.createClass({
       </div>
     );
   }
-});
+}
 
 export default Page;

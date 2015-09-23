@@ -1,31 +1,30 @@
-import React from 'react';
-import Router, { Link } from 'react-router';
+import React, { Component, PropTypes } from 'react';
 
-import _ from 'lodash';
+import { Link } from 'react-router';
+import { map } from 'lodash';
+
 import getJSON from 'helpers/get_json';
 
-const Albums = React.createClass({
-  statics: {
-    fetchData: function(params) {
-      return getJSON('json/albums.json');
-    }
-  },
+const propTypes = {
+  data: PropTypes.shape({
+    albums: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        path: PropTypes.string.isRequired,
+        cover: PropTypes.string.isRequired,
+      })
+    )
+  })
+};
 
-  props: {
-    data: React.PropTypes.shape({
-      albums: React.PropTypes.arrayOf(
-        React.PropTypes.shape({
-          title: React.PropTypes.string.isRequired,
-          path: React.PropTypes.string.isRequired,
-          cover: React.PropTypes.string.isRequired,
-        })
-      )
-    })
-  },
+class Albums extends Component {
+  static fetchData(params) {
+    return getJSON('json/albums.json');
+  }
 
-  render: function() {
+  render() {
     const { albums } = this.props.data;
-    const renderedAlbums = _.map(albums, function(album) {
+    const renderedAlbums = map(albums, function(album) {
       return (
         <div className='photo-box' key={album.title}>
           <Link to='album' params={{albumName: album.path}}>
@@ -44,6 +43,8 @@ const Albums = React.createClass({
       </div>
     );
   }
-});
+}
+
+Albums.propTypes = propTypes;
 
 export default Albums;

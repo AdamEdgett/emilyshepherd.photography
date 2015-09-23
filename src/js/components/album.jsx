@@ -1,38 +1,36 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 
-import _ from 'lodash';
+import { map } from 'lodash';
 import Masonry from 'masonry-layout';
 import Spinner from 'spin.js';
 import imagesLoaded from 'imagesloaded';
 
 import getJSON from 'helpers/get_json';
 
-const Album = React.createClass({
-  statics: {
-    fetchData: function(params) {
-      return getJSON(`json/albums/${params.albumName}.json`);
-    }
-  },
-
-  props: {
-    data: React.PropTypes.shape({
-      album: React.PropTypes.shape({
-        title: React.PropTypes.string.isRequired,
-        photos: React.PropTypes.arrayOf(
-          React.PropTypes.shape({
-            url: React.PropTypes.string.isRequired,
-            title: React.PropTypes.string
-          })
-        )
-      })
+const propTypes = {
+  data: PropTypes.shape({
+    album: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      photos: PropTypes.arrayOf(
+        PropTypes.shape({
+          url: PropTypes.string.isRequired,
+          title: PropTypes.string
+        })
+      )
     })
-  },
+  })
+};
 
-  render: function() {
+class Album extends Component {
+  static fetchData(params) {
+    return getJSON(`json/albums/${params.albumName}.json`);
+  }
+
+  render() {
     const { album } = this.props.data;
     const { photos, title } = album;
 
-    const renderedPhotos = _.map(photos, function(photo) {
+    const renderedPhotos = map(photos, function(photo) {
       return (
         <div className='photo-box' key={photo.url}>
           <a href={photo.url} data-lightbox='album' data-title={photo.title}>
@@ -53,7 +51,7 @@ const Album = React.createClass({
     );
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     const spinnerContainer = document.getElementById('spinner-container');
     const spinner = new Spinner({top: '100px'}).spin(spinnerContainer);
 
@@ -69,6 +67,8 @@ const Album = React.createClass({
       });
     }
   }
-});
+}
+
+Album.propTypes = propTypes;
 
 export default Album;
