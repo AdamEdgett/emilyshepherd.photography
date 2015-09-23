@@ -1,6 +1,8 @@
 {
   "name": "emilyshepherd.photography",
   "author": "Adam Edgett",
+  "description": "Photography portfolio site",
+  "repository": "https://github.com/adamedgett/emilyshepherd.photography",
   "scripts": {
     "lint": "eslint --ext .js,.jsx src/js/*"
   },
