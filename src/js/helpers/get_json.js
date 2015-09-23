@@ -5,12 +5,11 @@ const getJSON = function(url) {
     request(url, function(err, res) {
       if (res && res.ok) {
         resolve(res.body);
-      }
-      else {
+      } else {
         reject(err);
       }
     });
   });
-}
+};
 
 export default getJSON;

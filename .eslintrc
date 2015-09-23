@@ -1,1 +1,10 @@
-"extends": "airbnb"
+{
+  "extends": "airbnb",
+  "rules": {
+    "comma-dangle": 1,
+    "func-names": 0,
+
+    "react/jsx-quotes": 0,
+    "jsx-quotes": 2
+  }
+}

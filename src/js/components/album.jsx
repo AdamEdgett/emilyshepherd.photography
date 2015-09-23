@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import Masonry from 'masonry-layout';
+import masonry from 'masonry-layout';
 import Spinner from 'spin.js';
 import imagesLoaded from 'imagesloaded';
 
@@ -13,14 +13,31 @@ const propTypes = {
       photos: PropTypes.arrayOf(
         PropTypes.shape({
           url: PropTypes.string.isRequired,
-          title: PropTypes.string
+          title: PropTypes.string,
         })
-      )
-    })
-  })
+      ),
+    }),
+  }),
 };
 
 class Album extends Component {
+  componentDidMount() {
+    const spinnerContainer = document.getElementById('spinner-container');
+    new Spinner({top: '100px'}).spin(spinnerContainer);
+
+    const container = document.getElementById('photo-group');
+    if (container) {
+      imagesLoaded( container, function() {
+        spinnerContainer.className += 'hidden';
+        masonry( container, {
+          columnWidth: 0,
+          gutter: 0,
+          itemSelector: '.photo-box',
+        });
+      });
+    }
+  }
+
   static fetchData(params) {
     return getJSON(`json/albums/${params.albumName}.json`);
   }
@@ -31,8 +48,8 @@ class Album extends Component {
 
     const renderedPhotos = photos.map((photo) => {
       return (
-        <div className='photo-box' key={photo.url}>
-          <a href={photo.url} data-lightbox='album' data-title={photo.title}>
+        <div className="photo-box" key={photo.url}>
+          <a href={photo.url} data-lightbox="album" data-title={photo.title}>
             <img src={photo.url} />
           </a>
         </div>
@@ -40,31 +57,14 @@ class Album extends Component {
     });
 
     return (
-      <div className='album-info'>
+      <div className="album-info">
         <h3>{title}</h3>
-        <div id='photo-group'>
-          <div id='spinner-container' />
+        <div id="photo-group">
+          <div id="spinner-container" />
           {renderedPhotos}
         </div>
       </div>
     );
-  },
-
-  componentDidMount() {
-    const spinnerContainer = document.getElementById('spinner-container');
-    const spinner = new Spinner({top: '100px'}).spin(spinnerContainer);
-
-    const container = document.getElementById('photo-group');
-    if (container) {
-      imagesLoaded( container, function() {
-        spinnerContainer.className += 'hidden';
-        new Masonry( container, {
-          columnWidth: 0,
-          gutter: 0,
-          itemSelector: '.photo-box'
-        });
-      });
-    }
   }
 }
 

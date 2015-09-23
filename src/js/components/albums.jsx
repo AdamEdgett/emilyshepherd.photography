@@ -11,12 +11,12 @@ const propTypes = {
         path: PropTypes.string.isRequired,
         cover: PropTypes.string.isRequired,
       })
-    )
-  })
+    ),
+  }),
 };
 
 class Albums extends Component {
-  static fetchData(params) {
+  static fetchData() {
     return getJSON('json/albums.json');
   }
 
@@ -24,11 +24,11 @@ class Albums extends Component {
     const { albums } = this.props.data;
     const renderedAlbums = albums.map((album) => {
       return (
-        <div className='photo-box' key={album.title}>
-          <Link to='album' params={{albumName: album.path}}>
-            <img src={'albums/' + album.path + '/' + album.cover} />
+        <div className="photo-box" key={album.title}>
+          <Link to="album" params={{albumName: album.path}}>
+            <img src={`albums/${album.path}/${album.cover}`} />
           </Link>
-          <aside className='photo-caption'>
+          <aside className="photo-caption">
             {album.title}
           </aside>
         </div>
