@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 
-import { map } from 'lodash';
 import Masonry from 'masonry-layout';
 import Spinner from 'spin.js';
 import imagesLoaded from 'imagesloaded';
@@ -30,7 +29,7 @@ class Album extends Component {
     const { album } = this.props.data;
     const { photos, title } = album;
 
-    const renderedPhotos = map(photos, function(photo) {
+    const renderedPhotos = photos.map((photo) => {
       return (
         <div className='photo-box' key={photo.url}>
           <a href={photo.url} data-lightbox='album' data-title={photo.title}>

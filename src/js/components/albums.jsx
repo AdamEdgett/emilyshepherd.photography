@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-
 import { Link } from 'react-router';
-import { map } from 'lodash';
 
 import getJSON from 'helpers/get_json';
 
@@ -24,7 +22,7 @@ class Albums extends Component {
 
   render() {
     const { albums } = this.props.data;
-    const renderedAlbums = map(albums, function(album) {
+    const renderedAlbums = albums.map((album) => {
       return (
         <div className='photo-box' key={album.title}>
           <Link to='album' params={{albumName: album.path}}>
